@@ -32,5 +32,11 @@ import_config "#{Mix.env()}.exs"
 
 config :oban_sample, Oban,
   repo: ObanSample.Repo,
-  plugins: [Oban.Plugins.Pruner],
+  plugins: [
+    Oban.Plugins.Pruner,
+    {Oban.Plugins.Cron,
+    crontab: [
+      {"* * * * *", ObanSample.Cron}
+    ]}
+  ],
   queues: [default: 10, events: 50, media: 20]
