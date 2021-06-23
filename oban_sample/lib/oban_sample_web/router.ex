@@ -18,10 +18,10 @@ defmodule ObanSampleWeb.Router do
 
     get "/", PageController, :index
     get "/normal", PageController, :normal
-    get "/attempt_1", PageController, :attempt_1
-    get "/attempt_2", PageController, :attempt_2
-    get "/attempt_3", PageController, :attempt_3
-    get "/cancel_1", PageController, :cancel_1
+    get "/attempt1", PageController, :attempt1
+    get "/attempt2", PageController, :attempt2
+    get "/attempt3", PageController, :attempt3
+    get "/cancel1", PageController, :cancel1
   end
 
   # Other scopes may use custom stacks.

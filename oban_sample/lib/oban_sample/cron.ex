@@ -3,7 +3,7 @@ defmodule ObanSample.Cron do
 
   @impl Oban.Worker
   def perform(job) do
-    IO.inspect("minute worker")
+    #IO.inspect("minute worker")
     :ok
   end
 end
