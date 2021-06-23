@@ -15,9 +15,40 @@ defmodule ObanSampleWeb.PageController do
   end
 
   def attempt_1(conn, _) do
-    %{id: 2}
-    |> ObanSample.Business.new(schedule_in: 5*60, max_attempts: 1)
-    |> Oban.insert()
+    id = %{id: 2}
+      |> ObanSample.Business.new(schedule_in: 2*60, max_attempts: 1)
+      |> Oban.insert()
+      |> elem(1)
+      |> Map.get(:id)
+
+    json(conn, %{msg: "worked", id: id})
+  end
+
+  def attempt_2(conn, _) do
+    id = %{id: 3}
+      |> ObanSample.Business.new()
+      |> Oban.insert()
+      |> elem(1)
+      |> Map.get(:id)
+
+    json(conn, %{msg: "worked", id: id})
+  end
+
+  def attempt_3(conn, _) do
+    id = %{id: 4, message: "attempt 3"}
+      |> ObanSample.Business.new(schedule_in: 2*60)
+      |> Oban.insert()
+      |> elem(1)
+      |> Map.get(:id)
+
+    json(conn, %{msg: "worked", id: id})
+  end
+
+  def cancel_1(conn, %{"id" => id}) do
+    id
+    |> String.to_integer()
+    |> Oban.cancel_job()
+    |> IO.inspect()
 
     json(conn, %{msg: "worked"})
   end
